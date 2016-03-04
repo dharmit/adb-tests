@@ -1,0 +1,17 @@
+- job:
+    name: adb-vagrantfile-tests
+    node: atomic-sig
+    builders:
+        - inject:
+            properties-content: |
+                API_KEY=3ee4ec22-0abe-11e5-b2e3-525400ea212d
+                MACHINE_COUNT=1
+                TEST_CMD="./run_tests.sh"
+                GIT_REPO_URL='https://github.com/dharmit/adb-tests.git'
+        - centos-ci-bootstrap
+- builder:
+    name: centos-ci-bootstrap
+    builders:
+        - python:
+            !include-raw: './run.py'
+

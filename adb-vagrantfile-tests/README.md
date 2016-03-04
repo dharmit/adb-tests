@@ -1,0 +1,1 @@
+Tests in this directory are executed when a custom Vagrantfile under `components/centos/` directory is modified in [ADB](https://github.com/dharmit/adb-atomic-developer-bundle/) repo. Right now it works only on my forked repo and not the upstream [ADB](https://github.com/projectatomic/adb-atomic-developer-bundle/) repo. However, that'll change over time.
