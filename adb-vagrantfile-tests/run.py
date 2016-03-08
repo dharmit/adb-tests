@@ -26,8 +26,10 @@ for host in data['hosts']:
     ssh_cmd += "-o StrictHostKeyChecking=no "
     ssh_cmd += "root@%s " % (host)
 
-    remote_cmd = "yum -y install centos-release-scl && "
-    remote_cmd += "yum -y install sclo-vagrant1 git wget && "
+    remote_cmd = "yum -y install git epel && "
+    remote_cmd += "yum -y install ansible && "
+    remote_cmd += "git clone https://github.com/dharmit/ci-ansible &&"
+    remote_cmd += "ansible-playbook ci-ansible/playbook.yaml &&"
     remote_cmd += "wget https://raw.githubusercontent.com/dharmit/adb-tests/adb-fix-195/adb-vagrantfile-tests/install.sh && chmod +x install.sh && "
     remote_cmd += "scl enable sclo-vagrant1 ./install.sh"
 
