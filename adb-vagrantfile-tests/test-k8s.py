@@ -11,7 +11,7 @@ subprocess.check_call(
 output = subprocess.check_output(
     ['cd', '/root/adb/components/centos/centos-k8s-singlenode-setup', '&&',
      'vagrant', 'up', '&&',
-     'vagrant', 'ssh', '-c', 'kubectl', 'get', 'nodes']
+     'vagrant', 'ssh', '-c', '\'kubectl', 'get', 'nodes\'']
 )
 
 if "127.0.0.1" in output \
