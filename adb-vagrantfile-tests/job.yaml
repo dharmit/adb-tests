@@ -1,6 +1,9 @@
 - job:
     name: adb-vagrantfile-tests
     node: atomic-sig
+    publishers:
+        - email:
+            recipients: dshah@redhat.com
     builders:
         - inject:
             properties-content: |
