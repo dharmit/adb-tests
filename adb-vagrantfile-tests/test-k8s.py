@@ -8,20 +8,17 @@ subprocess.check_call(
      'plugin', 'install',
      'vagrant-service-manager']
 )
-subprocess.check_call(
-    ['cd', '/root/adb/components/centos/centos-k8s-singlenode-setup']
-)
-subprocess.check_call(
-    ['vagrant', 'up']
-)
-
 output = subprocess.check_output(
-    ['vagrant',
-     'ssh', '-c', 'kubectl', 'get', 'nodes']
+    ['cd', '/root/adb/components/centos/centos-k8s-singlenode-setup', '&&',
+     'vagrant', 'up', '&&',
+     'vagrant', 'ssh', '-c', 'kubectl', 'get', 'nodes']
+)
 
 if "127.0.0.1" in output \
-    and \
-    "Ready" in output:
+        and \
+        "Ready" in output:
+    print "Kubernetes successfully running in the Vagrant Box."
     sys.exit(0)
 else:
+    print "Kubernetes not running in the Vagrant Box."
     sys.exit(1)

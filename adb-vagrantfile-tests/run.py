@@ -30,8 +30,9 @@ for host in data['hosts']:
     remote_cmd += "yum -y install ansible && "
     remote_cmd += "git clone https://github.com/dharmit/ci-ansible &&"
     remote_cmd += "ansible-playbook ci-ansible/playbook.yaml &&"
-    remote_cmd += "git clone https://github.com/dharmit/adb-atomic-developer-bundle &&"
-    remote_cmd += "cd adb-atomic-developer-bundle && git checkout adb-fix-195 &&"
+    remote_cmd += "git clone https://github.com/dharmit/adb-tests &&"
+    remote_cmd += "cd adb-tests && git checkout adb-fix-195 && "
+    remote_cmd += "cd adb-vagrantfile-tests &&"
     remote_cmd += "scl enable sclo-vagrant1 ./test-k8s.py"
 
     cmd = '%s "%s"' % (ssh_cmd, remote_cmd)
