@@ -15,7 +15,7 @@ req_url = "%s/Node/get?key=%s&ver=%s&arch=%s&i_count=%s" \
     % (url_base, api_key, ver, arch, count)
 
 git_repo_url = os.environ['GIT_REPO_URL']
-test_cmd = os.environ['TEST_CMD']
+# test_cmd = os.environ['TEST_CMD']
 
 jsondata = urllib.urlopen(req_url).read()
 data = json.loads(jsondata)
