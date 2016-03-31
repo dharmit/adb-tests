@@ -1,0 +1,18 @@
+- job:
+    name: adb-performance-tests
+    node: atomic-sig
+    
+    builders:
+        - inject:
+            properties-content : |
+                API_KEY=3ee4ec22-0abe-11e5-b2e3-525400ea212d
+                MACHINE_COUNT=1
+                TEST_CMD="cd ~/adb-tests-dharmit && git checkout adb-performance-tests && cd adb-performance-tests && ./test.sh"
+                ANSIBLE_REPO_URL=https://github.com/dharmit/adb-ci-ansible
+        - python-script
+
+- builder:
+    name: python-script
+    builders:
+        - python:
+            !include-raw: './run.py'
