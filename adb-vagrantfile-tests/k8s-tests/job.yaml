@@ -1,5 +1,5 @@
 - job:
-    name: adb-vagrantfile-tests
+    name: adb-kubernetes-vagrantfile-tests
     node: atomic-sig
     properties:
         - github:
@@ -15,6 +15,7 @@
                 MACHINE_COUNT=1
                 GIT_REPO_URL='https://github.com/dharmit/adb-tests.git'
                 ANSIBLE_REPO_URL='https://github.com/dharmit/adb-ci-ansible'
+                TEST_CMD=cd /root/adb-tests-dharmit && git checkout adb-195-separate-tests && cd adb-vagrantfile-tests/k8s-tests && scl enable sclo-vagrant1 'bash -c "./test-k8s.py"'
         - centos-ci-bootstrap
     scm:
         - custom-scm
@@ -36,12 +37,15 @@
                 - LalatenduMohanty
                 - navidshaikh
                 - praveenkumar
-            trigger-phrase: '#build'
+                - bexelbie
+            trigger-phrase: '#buildk8s|#buildall'
+            only-trigger-phrase: true
             permit-all: false
             github-hooks: true
-            started-status: "Executing tests on CentOS CI"
-            success-status: "Successfully tested"
-            failure-status: "Tests failed :("
+            started-status: "Executing kubernetes tests on CentOS CI"
+            success-status: "Successfully tested kubernetes custom Vagrantfile"
+            failure-status: "Kubernetes tests failed"
+            status-context: "Kubernetes custom Vagrantfile tests"
 # GitHub repo info
 - scm:
     name: custom-scm
